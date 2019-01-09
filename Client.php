@@ -902,7 +902,7 @@ $data
      * @return string Body of the response from the CheddarGetter API
      * @throws CheddarGetter_Client_Exception
      */
-    protected function request($path, array $args = null)
+    protected function request($path, array $args = [])
     {
         $url = $this->_url . '/xml' . $path;
         if ($this->getProductId()) {
