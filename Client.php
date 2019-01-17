@@ -902,7 +902,7 @@ $data
      * @return string Body of the response from the CheddarGetter API
      * @throws CheddarGetter_Client_Exception
      */
-    protected function request($path, array $args = [])
+    protected function request($path, array $args = null)
     {
         $url = $this->_url . '/xml' . $path;
         if ($this->getProductId()) {
@@ -917,7 +917,7 @@ $data
                 if (!is_array(current($args))) {
                     $args['remoteAddress'] = self::getRequestAdapter()->getIp();
                 }
-            } elseif (count($args) == 1 && !empty($args['remoteAddress'])) {
+            } elseif (is_array($args) && count($args) == 1 && !empty($args['remoteAddress'])) {
                 $url .= '/remoteAddress/' . urlencode($args['remoteAddress']);
                 unset($args['remoteAddress']);
             } else {
